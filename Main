@@ -1,0 +1,24 @@
+package org.example;
+
+import org.example.graphTravelers.BfsGraphTraverser;
+import org.example.graphTravelers.DfsGraphTraverser;
+import org.example.graphTravelers.Traverser;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // استفاده از Adapter برای تغییر کتابخانه
+        GraphAdapter graphAdapter = new GraphAdapter();
+
+        Traverser dfsGraphTraveler = new DfsGraphTraverser(graphAdapter);
+        Traverser bfsGraphTraveler = new BfsGraphTraverser(graphAdapter);
+
+        List<Integer> dfsPath = dfsGraphTraveler.traverse(1);
+        List<Integer> bfsPath = bfsGraphTraveler.traverse(1);
+
+        System.out.println("Graph-DFS From node 1 is: " + dfsPath);
+        System.out.println("Graph-BFS From node 1 is: " + bfsPath);
+    }
+}
